@@ -44,9 +44,10 @@ section[id]{scroll-margin-top:84px}
 .pm-demo-error{margin:0;color:#FDE68A;font-size:15px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
 .pm-demo-error[hidden]{display:none}
 .pm-demo-retry{min-height:40px;padding:0 16px;border-radius:999px;border:0;background:#FFFFFF;color:#1E3354;font:inherit;font-weight:600;cursor:pointer}
-/* Wide screens: hold the hero to the illustration's own size */
-@container (min-width: 1520px){
-.pm-hero{max-width:1440px;margin:20px auto 0;border-radius:28px;min-height:810px !important}
+/* Wide screens: the hero is a full-width pale band, with the illustration as a large
+   rounded picture inside it (up to 1920px wide, and never taller than the screen) */
+@container (min-width: 1640px){
+.pm-hero{width:min(1920px, calc(100cqi - 64px), calc((100vh - 120px) * 1.7768));margin:24px auto 32px;border-radius:28px;aspect-ratio:1672/941;min-height:auto !important;box-shadow:0 0 0 100vmax #EAF4FA;clip-path:inset(-24px -100vmax -32px -100vmax)}
 }
 /* Phones: logo and prototype button on one row, the three links evenly below */
 @container (max-width: 700px){
@@ -421,7 +422,6 @@ section[id]{scroll-margin-top:84px}
       <span style="font-family: 'Space Grotesk', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.02em; color: #FFFFFF">Parra<span style="color: #4ADE80">Mate</span></span>
       <span>WSTI Festi 2026 · Parramatta Possibilities</span>
       <span>Challenge 3: Cleaner and More Sustainable Neighbourhoods</span>
-      <span>Challenge 1: Climate Resilience and Community Wellbeing</span>
       <span>Built by Anita, Seetha and Sajo.</span>
       <a href="https://parramate-app.vercel.app" target="_blank" rel="noopener" style="color: #FFFFFF; text-underline-offset: 3px">Prototype: parramate-app.vercel.app</a>
       <span style="color: #94A3B8">An independent project. Not an official City of Parramatta service.</span>
