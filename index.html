@@ -32,6 +32,18 @@ section[id]{scroll-margin-top:84px}
 .pm-top.is-visible{opacity:1;visibility:visible;transform:none}
 .pm-top:hover{background:#2A4570}
 @media (prefers-reduced-motion: reduce){.pm-top{transition:none}}
+.pm-demo-open:hover{background:#EEF3F7 !important}
+.pm-demo{position:fixed;inset:0;z-index:100;font-family:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;line-height:1.55;display:flex;align-items:center;justify-content:center;padding:20px;box-sizing:border-box;background:rgba(13,22,38,.92)}
+.pm-demo[hidden]{display:none}
+.pm-demo-panel{width:100%;max-width:960px;display:flex;flex-direction:column;gap:14px}
+.pm-demo-title{margin:0;color:#FFFFFF;font-family:'Space Grotesk','Helvetica Neue',Arial,sans-serif;font-weight:700;font-size:20px;letter-spacing:-0.01em}
+.pm-demo-video{display:block;width:100%;aspect-ratio:16/9;height:auto;border-radius:12px;background:#000}
+.pm-demo-note{margin:0;color:#CBD5E1;font-size:14px}
+.pm-demo-close{position:absolute;top:14px;right:14px;width:48px;height:48px;border-radius:50%;border:0;background:rgba(255,255,255,.12);color:#FFFFFF;display:flex;align-items:center;justify-content:center;cursor:pointer}
+.pm-demo-close:hover{background:rgba(255,255,255,.22)}
+.pm-demo-error{margin:0;color:#FDE68A;font-size:15px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.pm-demo-error[hidden]{display:none}
+.pm-demo-retry{min-height:40px;padding:0 16px;border-radius:999px;border:0;background:#FFFFFF;color:#1E3354;font:inherit;font-weight:600;cursor:pointer}
 </style>
 </head>
 <body>
@@ -66,6 +78,7 @@ section[id]{scroll-margin-top:84px}
         <a href="https://parramate-app.vercel.app" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 24px; box-sizing: border-box; border-radius: 999px; background: #1E3354; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px">Try the prototype
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg>
         </a>
+        <button type="button" class="pm-demo-open" aria-haspopup="dialog" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 24px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #1E3354; border: 2px solid #1E3354; font: inherit; font-weight: 600; font-size: 16px; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"></path></svg>Watch the 3-minute demo</button>
       </div>
     </div>
   </div>
@@ -364,6 +377,7 @@ section[id]{scroll-margin-top:84px}
       <a href="https://parramate-app.vercel.app" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 24px; box-sizing: border-box; border-radius: 999px; background: #1E3354; color: #FFFFFF; text-decoration: none; font-weight: 600; font-size: 16px">Try the prototype
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8"></path></svg>
       </a>
+      <button type="button" class="pm-demo-open" aria-haspopup="dialog" style="display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 50px; padding: 0 24px; box-sizing: border-box; border-radius: 999px; background: #FFFFFF; color: #1E3354; border: 2px solid #1E3354; font: inherit; font-weight: 600; font-size: 16px; cursor: pointer"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"></circle><path d="M10 8.5l5.5 3.5-5.5 3.5z" fill="currentColor"></path></svg>Watch the 3-minute demo</button>
     </div>
   </div>
 </section>
@@ -409,6 +423,51 @@ document.querySelectorAll('a[href="#top"]').forEach(function (a) {
     window.scrollTo({ top: 0, behavior: still ? "auto" : "smooth" });
   });
 });
+</script>
+<div class="pm-demo" id="pm-demo" role="dialog" aria-modal="true" aria-labelledby="pm-demo-title" hidden>
+  <button type="button" class="pm-demo-close" aria-label="Close the video"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+  <div class="pm-demo-panel">
+    <p class="pm-demo-title" id="pm-demo-title">ParraMate in 3 minutes</p>
+    <video class="pm-demo-video" id="pm-demo-video" src="/parramate-demo.mp4" poster="/parramate-demo-poster.jpg" controls playsinline muted preload="none"></video>
+    <p class="pm-demo-note">No sound. Captions are built in.</p>
+    <p class="pm-demo-error" hidden>The video could not load. Check the connection and try again. <button type="button" class="pm-demo-retry">Try again</button></p>
+  </div>
+</div>
+<script>
+/* Demo video: both "Watch the 3-minute demo" buttons open one player. Nothing loads until a tap. */
+(function () {
+  var modal = document.getElementById("pm-demo");
+  var video = document.getElementById("pm-demo-video");
+  var closeBtn = modal.querySelector(".pm-demo-close");
+  var error = modal.querySelector(".pm-demo-error");
+  var retry = modal.querySelector(".pm-demo-retry");
+  var opener = null;
+  function play() {
+    var p = video.play();
+    if (p && p.catch) { p.catch(function () {}); }
+  }
+  function open(e) {
+    opener = e.currentTarget;
+    error.hidden = true;
+    modal.hidden = false;
+    document.documentElement.style.overflow = "hidden";
+    closeBtn.focus();
+    play();
+  }
+  function close() {
+    video.pause();
+    try { video.currentTime = 0; } catch (x) {}
+    modal.hidden = true;
+    document.documentElement.style.overflow = "";
+    if (opener) { opener.focus(); }
+  }
+  document.querySelectorAll(".pm-demo-open").forEach(function (b) { b.addEventListener("click", open); });
+  closeBtn.addEventListener("click", close);
+  modal.addEventListener("click", function (e) { if (e.target === modal) { close(); } });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !modal.hidden) { close(); } });
+  video.addEventListener("error", function () { error.hidden = false; });
+  retry.addEventListener("click", function () { error.hidden = true; video.load(); play(); });
+})();
 </script>
 </body>
 </html>
